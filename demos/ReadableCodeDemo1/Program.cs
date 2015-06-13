@@ -23,9 +23,13 @@ namespace ReadableCodeDemo1
 			Console.ReadKey();
 		}
 
-
-
-
+		/*
+		 * 
+		 * 
+		 * Scroll for dramatic effect.
+		 *
+		 * 
+		 */
 
 
 
