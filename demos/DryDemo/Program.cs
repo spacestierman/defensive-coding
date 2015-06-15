@@ -9,12 +9,6 @@ using System.Threading.Tasks;
 
 namespace ReadableCodeDemo4
 {
-	/*
-	 * Be DRY
-	 * 
-	 * Eliminate repeated strings
-	 * 
-	 */
 	class Program
 	{
 		static void Main(string[] args)
