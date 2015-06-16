@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace ReadableCodeDemo1
 {
-	/*
-	 * 
-	 * 
-	 * Naming is really important.
-	 *
-	 * 
-	 */
 	class Program
 	{
 		static void Main(string[] args)
