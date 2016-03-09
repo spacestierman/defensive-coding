@@ -11,17 +11,17 @@ namespace ReadableCodeDemo1
 		static void Main(string[] args)
 		{
 			Process(); // TODO: What's this do? Rename the method.
-			
-			Console.WriteLine("Done with Demo #1.");
+
+			Console.WriteLine("Done.");
 			Console.ReadKey();
 		}
 
 		/*
-		 * 
-		 * 
+		 *
+		 *
 		 * Scroll for dramatic effect.
 		 *
-		 * 
+		 *
 		 */
 
 

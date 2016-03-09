@@ -10,35 +10,47 @@ using System.Threading.Tasks;
 namespace ReadableCodeDemo2
 {
 	/*
-	 * 
-	 * 
-	 * Keep methods focused on a single task
-	 *
-	 * 
+	 * Name methods what they do.
+	 * Keep methods focused on a single task.
 	 */
 	class Program
 	{
 		static void Main(string[] args)
 		{
-			FindAllMustacheFilesAndRender();
+			FindAllMustacheFilesAndRenderToHTML();
 
-			Console.WriteLine("Done with Demo #2.");
+			Console.WriteLine("Done.");
 			Console.ReadKey();
 		}
 
-		static void FindAllMustacheFilesAndRender()
+		static void FindAllMustacheFilesAndRenderToHTML()
 		{
-			// TODO: This method is trying to do too much at once.  Split up: Find all the mustache files, Rendering the mustache files.
-			string[] files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.mustache", System.IO.SearchOption.AllDirectories); // Get all the mustache files
-			foreach (string file in files) // Render all the mustache files
-			{
-				string modelFilePath = file.Replace(".mustache", ".model");
-				string modelFileContents = File.ReadAllText(modelFilePath);
-				object model = JsonConvert.DeserializeObject(modelFileContents);
+			IEnumerable<string> mustacheFiles = FindAllMustacheFiles();
+			RenderMustacheFilesToHTML(mustacheFiles);
+		}
 
-				string filename = file.Replace(".mustache", ".html");
-				Render.FileToFile(file, model, filename);
+		static IEnumerable<string> FindAllMustacheFiles()
+		{
+			string[] files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.mustache", System.IO.SearchOption.AllDirectories);
+			return files;
+		}
+
+		static void RenderMustacheFilesToHTML(IEnumerable<string> files)
+		{
+			foreach (string file in files)
+			{
+				object model = GetModelForMustacheFile(file);
+				string outputPath = file.Replace(".mustache", ".html");
+				Render.FileToFile(file, model, outputPath);
 			}
+		}
+
+		static object GetModelForMustacheFile(string mustacheTemplate)
+		{
+			string modelFilePath = mustacheTemplate.Replace(".mustache", ".model");
+			string modelFileContents = File.ReadAllText(modelFilePath);
+			object model = JsonConvert.DeserializeObject(modelFileContents);
+			return model;
 		}
 	}
 }
