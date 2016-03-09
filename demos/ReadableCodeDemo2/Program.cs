@@ -41,7 +41,7 @@ namespace ReadableCodeDemo2
 			{
 				object model = GetModelForMustacheFile(file);
 				string outputPath = file.Replace(".mustache", ".html");
-				Render.FileToFile(file, model, outputPath);
+				Nustache.Core.Render.FileToFile(file, model, outputPath);
 			}
 		}
 
