@@ -23,13 +23,95 @@ namespace ReadableCodeDemo2
 			Console.ReadKey();
 		}
 
+		/*
+		 *             |~
+		 *			   |.---.
+		 *			  .'_____`. /\
+		 *			  |~xxxxx~| ||
+		 *			  |_  #  _| ||
+		 *		 .------`-#-'-----.
+		 *		(___|\_________/|_.`.
+		 *		 /  | _________ | | |
+		 *		/   |/   _|_   \| | |
+		 *	   /   /X|  __|__  |/ `.|
+		 *	  (  --< \\/    _\//|_ |`.
+		 *	  `.    ~----.-~=====,:=======
+		 *		~-._____/___:__(``/| |
+		 *		  |    |      XX|~ | |
+		 *		   \__/======| /|  `.|
+		 *		   |_\|\    /|/_|    )
+		 *		   |_   \__/   _| .-'
+		 *		   | \ .'||`. / |(_|
+		 *		LS |  ||.'`.||  |   )
+		 *		   |  `'|  |`'  |  /
+		 *		   |    |  |    |\/   Boba Fett
+		 * 
+		 * http://www.chris.com/ascii/index.php?art=movies/star%20wars
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 *       
+		 */
+
 		static void FindAllMustacheFilesAndRenderToHTML()
 		{
-			IEnumerable<string> mustacheFiles = FindAllMustacheFiles();
+			IEnumerable<string> mustacheFiles = FindAllMustacheFilePaths();
 			RenderMustacheFilesToHTML(mustacheFiles);
 		}
 
-		static IEnumerable<string> FindAllMustacheFiles()
+		static IEnumerable<string> FindAllMustacheFilePaths()
 		{
 			string[] files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.mustache", System.IO.SearchOption.AllDirectories);
 			return files;
@@ -39,10 +121,15 @@ namespace ReadableCodeDemo2
 		{
 			foreach (string file in files)
 			{
-				object model = GetModelForMustacheFile(file);
-				string outputPath = file.Replace(".mustache", ".html");
-				Nustache.Core.Render.FileToFile(file, model, outputPath);
+				RenderMustacheFile(file);
 			}
+		}
+
+		static void RenderMustacheFile(string file)
+		{
+			object model = GetModelForMustacheFile(file);
+			string outputPath = file.Replace(".mustache", ".html");
+			Nustache.Core.Render.FileToFile(file, model, outputPath);
 		}
 
 		static object GetModelForMustacheFile(string mustacheTemplate)
